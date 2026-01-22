@@ -11,10 +11,14 @@ carForm.addEventListener("submit", (event) => {
   const fuel = document.getElementById("fuel").value;
   const year = document.getElementById("year").value;
 
-  const carCard = document.createElement("div");
-  carCard.className = "car-card";
+  if (price <= 0 || name.length < 3) {
+    alert("Pavadinimas per trumpas, arba kaina mazesne uz 1 eura");
+    return;
+  } else {
+    const carCard = document.createElement("div");
+    carCard.className = "car-card";
 
-  carCard.innerHTML = `
+    carCard.innerHTML = `
   <img src="${image}" alt="car">
   <h3>${name}</h3>
   <p>${description}</p>
@@ -23,11 +27,12 @@ carForm.addEventListener("submit", (event) => {
   <p>Automobilio kuro tipas: ${fuel}</p>
   <button>Istrinti</button>
   `;
-  carsDiv.appendChild(carCard);
-  const deleteBtn = carCard.querySelector("button");
-  deleteBtn.addEventListener("click", () => {
-    carCard.classList.add("deleted");
-  });
-  //   atstatyti forma i pradine padeti
-  carForm.reset();
+    carsDiv.appendChild(carCard);
+    const deleteBtn = carCard.querySelector("button");
+    deleteBtn.addEventListener("click", () => {
+      carCard.remove();
+    });
+    //   atstatyti forma i pradine padeti
+    carForm.reset();
+  }
 });
