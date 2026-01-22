@@ -21,9 +21,13 @@ carForm.addEventListener("submit", (event) => {
   <p>Automobilio pagaminimo metai: ${year}</p>
   <p>Automobilio kaina: ${price}</p>
   <p>Automobilio kuro tipas: ${fuel}</p>
+  <button>Istrinti</button>
   `;
   carsDiv.appendChild(carCard);
-
+  const deleteBtn = carCard.querySelector("button");
+  deleteBtn.addEventListener("click", () => {
+    carCard.classList.add("deleted");
+  });
   //   atstatyti forma i pradine padeti
   carForm.reset();
 });
