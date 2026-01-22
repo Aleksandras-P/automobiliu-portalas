@@ -18,6 +18,14 @@ carForm.addEventListener("submit", (event) => {
     const carCard = document.createElement("div");
     carCard.className = "car-card";
 
+    if (fuel === "benzinas") {
+      carCard.classList.add("gasoline");
+    } else if (fuel === "dyzelinas") {
+      carCard.classList.add("diesel");
+    } else if (fuel == "elektra") {
+      carCard.classList.add("electric");
+    }
+
     carCard.innerHTML = `
   <img src="${image}" alt="car">
   <h3>${name}</h3>
