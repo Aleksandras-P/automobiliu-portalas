@@ -10,6 +10,7 @@ carForm.addEventListener("submit", (event) => {
   const image = document.getElementById("image").value;
   const fuel = document.getElementById("fuel").value;
   const year = document.getElementById("year").value;
+  const carsCount = document.getElementById("carsCount");
 
   if (price <= 0 || name.length < 3) {
     alert("Pavadinimas per trumpas, arba kaina mazesne uz 1 eura");
@@ -35,11 +36,22 @@ carForm.addEventListener("submit", (event) => {
   <p>Automobilio kuro tipas: ${fuel}</p>
   <button>Istrinti</button>
   `;
+
     carsDiv.appendChild(carCard);
     const deleteBtn = carCard.querySelector("button");
     deleteBtn.addEventListener("click", () => {
-      carCard.remove();
+      if (carsQuantity < 1) {
+        carCard.remove();
+        carsCount.textContent = 0;
+      } else {
+        carCard.remove();
+        carsCount.textContent = `${carsQuantity}`;
+      }
     });
+    const carsQuantity = document.getElementsByClassName("car-card").length;
+    console.log(carsQuantity);
+    carsCount.textContent = `${carsQuantity}`;
+
     //   atstatyti forma i pradine padeti
     carForm.reset();
   }
